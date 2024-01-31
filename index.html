@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <title>Car Driving Simulation</title>
+
+
+  <!-- Import A-Frame and then AR.js -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  <script src="carmove.js"></script>
+</head>
+
+
+<body style="margin: 0px; overflow: hidden">
+  <!-- A-frame scene -->
+  <a-scene inspector-plugin-recast>
+
+    <a-assets>
+      <a-asset-item src="./assets/navmesh.gltf" id="navMesh"></a-asset-item>
+      <a-asset-item src="./assets/car/scene.gltf" id="car-model"></a-asset-item>
+    </a-assets>
+
+    <a-entity id="cam" position="0 2 -5" rotation="0 180 0" movement-controls="speed:0.1; constrainToNavMesh:true" car-move >
+      <a-entity position="0 1.6 0" camera look-controls="pointerLockEnabled: false"></a-entity>
+
+
+      <a-entity id="car" gltf-model="#car-model" position="0 0 0" rotation="0 -90 0"></a-entity>
+    </a-entity>
+    </a-entity>
+
+    <a-entity id="nav-mesh" gltf-model="#navMesh" visible="false" nav-mesh>
+
+    </a-entity>
+
+    <!--Ground-->
+    <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
+      static-body visible="false">
+    </a-plane>
+
+    <!--A-Frame Environment-->
+    <a-entity id="environment" environment="preset: yavapai; skyType:gradient; lighting:point"> </a-entity>
+
+
+
+
+
+
+
+
+
+      <!-- <a-entity id="NavMesh" gltf-model="#collider" nav-mesh scale="1 1 1">
+
+    </a-entity> -->
+
+      <!--Map-->
+      <!-- <a-entity id="map" gltf-model="#map1" position="0.05 0.05 0.05"></a-entity>
+    -->
+  </a-scene>
+</body>
+
+</html>
